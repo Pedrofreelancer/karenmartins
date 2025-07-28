@@ -1,0 +1,511 @@
+index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💍 Quer Casar Comigo? 💍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fecfef, #ffc3a0);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            color: #fff;
+            font-size: 1rem;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            max-width: 700px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            animation: floatIn 2s ease-out;
+        }
+
+        @keyframes floatIn {
+            0% {
+                transform: translateY(100px) scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .title {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, #e91e63, #ff5722, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: glow 3s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(233, 30, 99, 0.3);
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .heart-container {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .big-heart {
+            font-size: 5rem;
+            color: #e91e63;
+            animation: heartPulse 1.5s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1.2); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ff69b4;
+            animation: floatUp 4s ease-in-out infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .proposal-btn {
+            padding: 1.5rem 3rem;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            min-width: 180px;
+        }
+
+        .btn-sim {
+            background: linear-gradient(45deg, #ff6b9d, #ff8a80, #ffab91);
+            color: white;
+            box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4); }
+            50% { box-shadow: 0 20px 40px rgba(255, 107, 157, 0.7); }
+            100% { box-shadow: 0 15px 35px rgba(255, 107, 157, 0.4); }
+        }
+
+        .btn-sim:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 107, 157, 0.8);
+        }
+
+        .btn-nao {
+            background: linear-gradient(45deg, #b0bec5, #cfd8dc);
+            color: #2c3e50;
+            box-shadow: 0 10px 25px rgba(176, 190, 197, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-nao:hover {
+            animation: runAway 0.5s ease-out forwards;
+        }
+
+        @keyframes runAway {
+            0% { transform: translateX(0) translateY(0); }
+            25% { transform: translateX(-50px) translateY(-30px) rotate(-15deg); }
+            50% { transform: translateX(100px) translateY(-60px) rotate(15deg); }
+            75% { transform: translateX(-80px) translateY(-90px) rotate(-10deg); }
+            100% { transform: translateX(150px) translateY(-120px) rotate(20deg) scale(0.8); }
+        }
+
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 182, 193, 0.95), rgba(255, 240, 245, 0.95));
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            animation: celebrationFade 1s ease-in;
+        }
+
+        @keyframes celebrationFade {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .celebration-text {
+            font-size: 4rem;
+            color: #e91e63;
+            text-align: center;
+            animation: celebrationBounce 1s ease-in-out infinite;
+            margin-bottom: 2rem;
+        }
+
+        @keyframes celebrationBounce {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .celebration-message {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.6;
+            padding: 0 2rem;
+        }
+
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1001;
+        }
+
+        .firework {
+            position: absolute;
+            font-size: 2rem;
+            animation: explode 2s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .main-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+            
+            .proposal-btn {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="starsContainer"></div>
+    
+    <div class="main-container">
+        <h1 class="title">💍 Karen Martins 💍</h1>
+        <p class="subtitle">Quer Casar Comigo?</p>
+        
+        <div class="heart-container">
+            <div class="big-heart">💖</div>
+            <div class="floating-hearts" id="floatingHearts"></div>
+        </div>
+        
+        <div class="message-box">
+            <p class="message">
+                "Karen Martins, você é a razão do meu sorriso, a luz dos meus dias e o amor da minha vida. 
+                Cada momento ao seu lado é uma benção, e eu quero passar todos os meus dias 
+                fazendo você feliz. Você aceita ser minha companheira para sempre?"
+            </p>
+        </div>
+        
+        <div class="buttons-container">
+            <button class="proposal-btn btn-sim" onclick="celebrate()">
+                💕 SIM, ACEITO! 💕
+            </button>
+            <button class="proposal-btn btn-nao" id="noButton" onclick="handleNo()">
+                😢 Não...
+            </button>
+        </div>
+        
+        <div style="font-size: 2rem; margin-top: 2rem; animation: twinkle 2s ease-in-out infinite;">
+            ✨ 🌟 ⭐ 🌟 ✨
+        </div>
+    </div>
+    
+    <div class="celebration-overlay" id="celebrationOverlay">
+        <div class="celebration-text">
+            🎉 ELA DISSE SIM! 🎉
+        </div>
+        <div class="celebration-message">
+            Karen, você me fez a pessoa mais feliz do universo!
+            Agora vamos planejar nossa vida juntos! 
+            💑👰‍♀️🤵‍♂️💒
+        </div>
+        <div style="font-size: 3rem; margin-top: 2rem; animation: celebrationBounce 1s ease-in-out infinite;">
+            🎊 💍 🎊 💍 🎊
+        </div>
+    </div>
+    
+    <div class="fireworks" id="fireworksContainer"></div>
+
+    <script>
+        // Criar estrelas no fundo
+        function createStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            const starSymbols = ['⭐', '✨', '🌟', '💫'];
+            
+            for(let i = 0; i < 20; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = starSymbols[Math.floor(Math.random() * starSymbols.length)];
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Criar corações flutuantes
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💖', '💗', '💘', '💝'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = (Math.random() * 200 - 100) + 'px';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    if (heart.parentNode) {
+                        heart.parentNode.removeChild(heart);
+                    }
+                }, 4000);
+            }, 1000);
+        }
+
+        // Função de celebração
+        function celebrate() {
+            const overlay = document.getElementById('celebrationOverlay');
+            overlay.style.display = 'flex';
+            
+            // Criar fogos de artifício
+            createFireworks();
+            
+            // Tocar som de celebração (visual)
+            setTimeout(() => {
+                for(let i = 0; i < 30; i++) {
+                    setTimeout(() => createFirework(), i * 200);
+                }
+            }, 500);
+        }
+
+        // Criar fogos de artifício
+        function createFireworks() {
+            const container = document.getElementById('fireworksContainer');
+            const symbols = ['🎆', '🎇', '✨', '🎉', '🎊', '💥', '⭐'];
+            
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.className = 'firework';
+                    firework.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    firework.style.left = Math.random() * 100 + '%';
+                    firework.style.top = Math.random() * 100 + '%';
+                    firework.style.animationDelay = Math.random() * 1 + 's';
+                    
+                    container.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        if (firework.parentNode) {
+                            firework.parentNode.removeChild(firework);
+                        }
+                    }, 3000);
+                }, i * 300);
+            }
+        }
+
+        function createFirework() {
+            const container = document.getElementById('fireworksContainer');
+            const symbols = ['🎆', '🎇', '✨', '🎉', '🎊'];
+            
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            firework.style.left = Math.random() * 100 + '%';
+            firework.style.top = Math.random() * 100 + '%';
+            
+            container.appendChild(firework);
+            
+            setTimeout(() => {
+                if (firework.parentNode) {
+                    firework.parentNode.removeChild(firework);
+                }
+            }, 2000);
+        }
+
+        // Manipular o botão "Não"
+        let noClickCount = 0;
+        const noMessages = [
+            '😢 Tem certeza?',
+            '🥺 Pensa melhor...',
+            '💔 Por favor...',
+            '😭 Eu te amo!',
+            '🙏 Só um sim?',
+            '💕 Para mim?'
+        ];
+
+        function handleNo() {
+            const noButton = document.getElementById('noButton');
+            noClickCount++;
+            
+            if (noClickCount < noMessages.length) {
+                noButton.textContent = noMessages[noClickCount - 1];
+                noButton.style.fontSize = Math.max(1.1 - (noClickCount * 0.1), 0.8) + 'rem';
+            } else {
+                noButton.textContent = '💔 Impossível!';
+                noButton.style.pointerEvents = 'none';
+                noButton.style.opacity = '0.5';
+            }
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createFloatingHearts();
+        });
+
+        // Impedir que o botão "Não" seja clicado facilmente
+        document.getElementById('noButton').addEventListener('mouseenter', function() {
+            if (Math.random() > 0.3) { // 70% de chance de fugir
+                this.style.transform = 'translate(' + (Math.random() * 200 - 100) + 'px, ' + (Math.random() * 100 - 50) + 'px)';
+            }
+        });
+    </script>
+</body>
+</html>
